@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+	<title>Registration</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-6 mx-auto">
+				<form method="post" role="form" th:action="@{/process_register}" th:object="${user}">
+					<h1>Registration Form</h1>
+					<div th:if="${param.success}">
+						<div class="alert alert-info">
+							Registration successful !!!
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="email">Email</label>
+						<input class="form-control" id="email" name="email" type="email">
+						<p class="text-danger" th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="col-sm-2 col-form-label" for="password">Password</label>
+						<input class="form-control" id="password" name="password" type="password">
+						<p class="text-danger" th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="firstname">First name</label>
+						<input class="form-control" id="firstname" name="firstname" type="text">
+						<p class="text-danger" th:errors="*{firstname}" th:if="${#fields.hasErrors('firstname')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="lastname">Last name</label>
+						<input class="form-control" id="lastname" name="lastname" type="text">
+						<p class="text-danger" th:errors="*{lastname}" th:if="${#fields.hasErrors('lastname')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="bankname">Bank name</label>
+						<input class="form-control" id="bankname" name="bankname" type="text">
+						<p class="text-danger" th:errors="*{bankname}" th:if="${#fields.hasErrors('bankname')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="iban">Iban</label>
+						<input class="form-control" id="iban" name="iban" type="text">
+						<p class="text-danger" th:errors="*{iban}" th:if="${#fields.hasErrors('iban')}"></p>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="bic">BIC</label>
+						<input class="form-control" id="bic" name="bic" type="text">
+						<p class="text-danger" th:errors="*{bic}" th:if="${#fields.hasErrors('bic')}"></p>
+					</div>
+
+					<div class="mb-3">
+						<label class="col-sm-2 col-form-label" for="balance">Balance</label>
+						<input class="form-control" id="balance" name="balance" type="balance">
+						<p class="text-danger" th:errors="*{balance}" th:if="${#fields.hasErrors('balance')}">
+						</p>
+					</div>
+					<div class="mb-3">
+						<button class="btn btn-primary mb-3" type="submit">Register</button>
+						or <a class="link-primary" th:href="@{/login}">Login</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script crossorigin="anonymous" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
