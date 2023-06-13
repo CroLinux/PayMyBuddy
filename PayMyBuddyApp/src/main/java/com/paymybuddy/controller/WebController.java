@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WebController {
 	
-    @GetMapping("")
-    public String viewHomePage() {
+    @GetMapping("/")
+    public String viewSlachPage() {
         return "index";
     }
     
@@ -15,5 +15,15 @@ public class WebController {
     public String viewIndexPage() {
         return "index";
     }
+    
+    @GetMapping("/home")
+    public String viewHomePage() {
+        return "index";
+    }
+    
+	@GetMapping("/login")
+	public String viewLoginPage() {
+		return "login";
+	}
     
 }
