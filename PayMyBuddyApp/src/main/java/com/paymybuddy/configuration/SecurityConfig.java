@@ -23,13 +23,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          http.csrf(withDefaults())
                  .authorizeHttpRequests((requests) -> requests
-                                 .requestMatchers("/registration/**").permitAll()
-                                 .requestMatchers("/login/**").permitAll()
+                                 //.requestMatchers("/registration/**").permitAll()
+                                 .requestMatchers("/login").permitAll()
                                  .requestMatchers("/register").permitAll()
                                  .requestMatchers("/process_register").permitAll()
-                                 .requestMatchers("/signup_form").permitAll()
-                                 .requestMatchers("/users").permitAll()
+                                 //.requestMatchers("/home").hasAnyRole("USER")
+                                 //.requestMatchers("/signup_form").permitAll()
+                                 //.requestMatchers("/users").permitAll()
                                  //.requestMatchers("/user_page/**").hasAnyRole("USER")
+                                 //.requestMatchers("/home").authenticated()
                                  .anyRequest().authenticated()
                  )
                  .formLogin((form) -> form
@@ -38,7 +40,12 @@ public class SecurityConfig {
                                  .defaultSuccessUrl("/home")
                                  .permitAll()
                  )
-                 .logout((logout) -> logout.permitAll())
+                 .logout((logout) -> logout
+                		    .logoutUrl("/logout")
+                		    .deleteCookies("JSESSIONID") // Optionally, specify additional cookies you want to delete
+                		    .deleteCookies() // Delete all cookies
+                		    .permitAll())
+                 //.logout((logout) -> logout.permitAll())
                  .exceptionHandling(handling -> handling.accessDeniedPage("/access-denied"));
                  //.and()
                  //.oauth2Login();
