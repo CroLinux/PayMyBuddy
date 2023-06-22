@@ -23,6 +23,12 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 
+	/**
+	 * Method to get the list of user's contact
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/contact")
 	public String getContact(Model model) {
 		User currentUser = userService.currentUser();
@@ -36,6 +42,14 @@ public class ContactController {
 		}
 	}
 
+	/**
+	 * Method to Add a contact into user's list
+	 * 
+	 * @param user
+	 * @param email
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@PostMapping("/process_add_contact")
 	public String processAddContact(@ModelAttribute("user") User user, String email,
 			RedirectAttributes redirectAttributes) {
@@ -50,10 +64,6 @@ public class ContactController {
 				break;
 			}
 		}
-		// Here, we verify if the user is actually connected.
-		if (currentUser == null) {
-			return "redirect:/login";
-		}
 		// Here, we verify if an email is provided.
 		if (email.isEmpty()) {
 			redirectAttributes.addAttribute("errorEmptyEmail", "true");
@@ -62,7 +72,7 @@ public class ContactController {
 		// Here, we do not authorize to add ourself as contact
 		if (email.equals(currentUser.getEmail())) {
 			redirectAttributes.addAttribute("errorYourEmail", "true");
-			return "redirect:/contact";			
+			return "redirect:/contact";
 		}
 		// Here, we verify if the requested email is not present into the DB.
 		if (!userService.existsByEmail(email)) {
@@ -83,10 +93,15 @@ public class ContactController {
 		}
 	}
 
+	/**
+	 * Method to delete a contact from the list
+	 * 
+	 * @param user
+	 * @param email
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@GetMapping("/process_delete_contact")
-	// public String processDeleteContact(@ModelAttribute("user") User user,
-	// @RequestParam("email") String email, RedirectAttributes redirectAttributes) {
-
 	public String processDeleteContact(@ModelAttribute("user") User user, String email,
 			RedirectAttributes redirectAttributes) {
 		User currentUser = userService.currentUser();

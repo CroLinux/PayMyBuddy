@@ -1,6 +1,5 @@
 package com.paymybuddy.service;
 
-import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +18,11 @@ public class ContactService {
 	private UserService userService;
 
 	/**
-	 * public User process_add_contact(int userId, int newUserId) {
+	 * Method to add a new contact to the list
 	 * 
-	 * Optional<User> user = userRepository.findById(userId); Optional<User> contact
-	 * = userRepository.findById(newUserId);
-	 * 
-	 * if (user != null && contact != null) { user.getContacts().add(contact);
-	 * userService. .save(user); }else {
-	 * 
-	 * }
-	 * 
-	 * return null;
-	 * 
-	 * 
-	 * }
+	 * @param user
+	 * @param email
 	 */
-
 	public void process_add_contact(User user, String email) {
 		List<User> contacts = user.getContacts();
 		User newContact = userRepository.findByEmail(email);
@@ -43,11 +31,10 @@ public class ContactService {
 	}
 
 	/**
-	 * Optional<User> userId1 = userRepository.findById(userId); Optional<User>
-	 * userId2 = userRepository.findById(newUserId);
+	 * Method to remove a contact from a list
 	 * 
-	 * if (userId1 != null && userId2 != null) { userId1.getContacts().add(userId2);
-	 * userRepository.save(userId1); return userId1; }
+	 * @param currentUser
+	 * @param email
 	 */
 	public void process_delete_contact(User currentUser, String email) {
 		List<User> contacts = currentUser.getContacts();

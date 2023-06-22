@@ -9,7 +9,10 @@ import lombok.Data;
 @Data
 @Entity
 public class TransactionDto {
-	
+
+	/**
+	 * Class used for the combination of data from the 2 tables in DB
+	 */
 	@Id
 	private int id;
 	private int sender_id;
@@ -23,9 +26,8 @@ public class TransactionDto {
 	private String type;
 	private Float amount;
 	private String currency;
-	private Date date ;
+	private Date date;
 	private String description;
 	private float fee;
-
 
 }

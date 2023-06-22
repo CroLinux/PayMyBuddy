@@ -16,27 +16,31 @@ public class WebController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * CLASS used for the definition of the standard pages
+	 * 
+	 * @return
+	 */
+	
+	
 	@GetMapping("")
 	public String viewMainPage() {
-		return "redirect:/login";
+		return "login";
 	}
-	
+
 	@GetMapping("/")
 	public String viewSlachPage() {
-		return "redirect:/login";
+		return "login";
 	}
 
 	@GetMapping("/home")
 	public String viewHomePage(Model model) {
 		User currentUser = userService.currentUser();
-		if (currentUser == null) {
-			return "redirect:/login";
-		} else {
-			List<User> connections = currentUser.getContacts();
-			model.addAttribute("user", currentUser);
-			model.addAttribute("connections", connections);
-			return "home";
-		}
+		List<User> connections = currentUser.getContacts();
+		model.addAttribute("user", currentUser);
+		model.addAttribute("connections", connections);
+		return "home";
+
 	}
 
 	@GetMapping("/login")

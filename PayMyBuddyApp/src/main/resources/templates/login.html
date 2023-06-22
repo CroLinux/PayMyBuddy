@@ -19,6 +19,7 @@
 	<div class="w-75 mx-auto">
 		<form class="w-50 mx-auto p-5 mt-5 border border-secondary border-3 rounded rounded-3" method="post"
 			th:action="@{/login}">
+			<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 			<div th:if="${param.error}" class="alert-danger text-center p-3 my-3" style="color: red;">
 				Wrong Email or Password.
 			</div>

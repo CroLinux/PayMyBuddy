@@ -66,7 +66,7 @@
 
 			<div class="mb-3">
 				<label class="col-sm-2 col-form-label" for="balance">Balance</label>
-				<input class="form-control" id="balance" name="balance" type="balance">
+				<input class="form-control" id="balance" name="balance" type="balance" disabled th:value="0">
 				<p class="text-danger" th:errors="*{balance}" th:if="${#fields.hasErrors('balance')}">
 				</p>
 			</div>

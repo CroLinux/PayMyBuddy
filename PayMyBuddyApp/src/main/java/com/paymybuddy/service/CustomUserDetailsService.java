@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private UserRepository userRepository;
 
 	/**
-	 * Needed for the Security COnfiguration for the Login
+	 * Needed for the Security Configuration for the Login
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {

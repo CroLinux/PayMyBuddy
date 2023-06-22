@@ -59,15 +59,12 @@ public class User {
 	@Column(name = "authority")
 	private String authority;
 
+	//Used for the relation between users
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL, })
 	@JoinTable(name = "assoc_user_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "contact_id"))
 	private List<User> contacts = new ArrayList<>();
-/**
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL, })
-	@JoinTable(name = "assoc_user_trx", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trx_id"))
-	private List<Transaction> transactions = new ArrayList<>();
-*/
 	
+	//Used for the relation regarding the transactions received
 	@OneToMany(
 			cascade = CascadeType.ALL,
 			orphanRemoval = true,
@@ -75,6 +72,7 @@ public class User {
 	@JoinColumn(name = "receiver_id")
 	List<Transaction> transactionsReceived = new ArrayList<>();
 	
+	//Used for the relation regarding the transactions processed
 	@OneToMany(
 			cascade = CascadeType.ALL, 
 			orphanRemoval = true, 
