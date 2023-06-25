@@ -19,8 +19,8 @@ public class TransactionService {
 	 * @param user
 	 * @return
 	 */
-	public Iterable<TransactionDto> findTransactionsDoneByUSer(int user) {
-		Iterable<TransactionDto> allTrxDone = transactionRepository.findTransactionsDoneByUSer(user);
+	public Iterable<TransactionDto> findTransactionsDoneByUser(int user) {
+		Iterable<TransactionDto> allTrxDone = transactionRepository.findTransactionsDoneByUser(user);
 		return allTrxDone;
 	}
 
@@ -30,8 +30,8 @@ public class TransactionService {
 	 * @param user
 	 * @return
 	 */
-	public Iterable<TransactionDto> findTransactionsReceivedByUSer(int user) {
-		Iterable<TransactionDto> allTrxReceived = transactionRepository.findTransactionsReceivedByUSer(user);
+	public Iterable<TransactionDto> findTransactionsReceivedByUser(int user) {
+		Iterable<TransactionDto> allTrxReceived = transactionRepository.findTransactionsReceivedByUser(user);
 		return allTrxReceived;
 	}
 

@@ -19,19 +19,11 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
-	/**
-	 * Method to display the users page with all the users We keep this one even if
-	 * it's not used as info
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/users")
-	public String getAllUsers(Model model) {
-		model.addAttribute("users", userService.getAllUsers());
-		return "users";
-	}
+	
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 	/**
 	 * Method to display the register page

@@ -51,7 +51,7 @@ public class User {
 	private String bic;
 
 	@Column(name = "balance")
-	private float balance;
+	private double balance;
 
 	@Column(name = "currency")
 	private String currency;

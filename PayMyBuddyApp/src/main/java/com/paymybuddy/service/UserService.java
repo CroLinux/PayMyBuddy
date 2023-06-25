@@ -19,11 +19,6 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// MAYBE TO REMOVE AT THE END
-	public Iterable<User> getAllUsers() {
-		return userRepository.findAll();
-	}
-
 	/**
 	 * Save new registered User and encode password
 	 * 
@@ -59,7 +54,7 @@ public class UserService {
 	}
 
 	/**
-	 * Get existing user
+	 * Get the current user
 	 * 
 	 * @return
 	 */
@@ -72,26 +67,24 @@ public class UserService {
 	}
 
 	/**
-	 * public boolean isEmailAlreadyInDB(int i) { return
-	 * userRepository.existsById(i); }
+	 * Check if a user exist
+	 * 
+	 * @return
 	 */
-
 	public boolean existsByEmail(String email) {
 		return userRepository.existsByEmail(email);
 
 	}
-/**
-	public Iterable<TransactionDto> findEmailUserById(int user_id) {
-		System.out.println("UserService findEmailUserById");
-		Iterable<TransactionDto> list = userRepository.findEmailUserById2(user_id);
-		return list;
-	}*/
 
+	/**
+	 * Find a user by his Id
+	 * 
+	 * @param receiver_id
+	 * @return
+	 */
 	public String findEmailUserById(int receiver_id) {
 		String receiverEmail = userRepository.findEmailUserById(receiver_id);
 		return receiverEmail;
 	}
-	
-	
 
 }

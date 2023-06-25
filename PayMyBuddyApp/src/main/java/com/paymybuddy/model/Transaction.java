@@ -30,7 +30,7 @@ public class Transaction {
 	private String type;
 
 	@Column(name = "amount")
-	private Float amount;
+	private double amount;
 
 	@Column(name = "currency")
 	private String currency;
@@ -42,6 +42,21 @@ public class Transaction {
 	private String description;
 
 	@Column(name = "fee")
-	private float fee;
+	private double fee;
+	
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"id=" + id +
+				", sender_id=" + sender_id +
+				", receiver_id=" + receiver_id +
+				", type='" + type + '\'' +
+				", amount=" + amount +
+				", currency='" + currency + '\'' +
+				", date=" + date +
+				", description='" + description + '\'' +
+				", fee=" + fee +
+				'}';
+	}
 
 }

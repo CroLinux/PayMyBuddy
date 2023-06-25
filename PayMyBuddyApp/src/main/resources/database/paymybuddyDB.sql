@@ -71,10 +71,10 @@ INSERT INTO user_account VALUES
 (3,'user2@mail.com','$2a$10$5mJTbljlpTyjQkr8WrKhquYCvpPa9.4/ZjPBrebxw8FQ8oUhEml.i','User','Two','Bank User2','FR2234567890','BICFRUSR2',100,'EUR','ROLE_USER');
 
 INSERT INTO transaction VALUES
-(1, 1, 3,'Credit', 100.00, 'EUR', '19/05/23 11:20:12', 'Get from my Bank', 0),
-(2, 3, 2,'Debit', 15.00, 'EUR', '19/05/23 12:20:12', 'Pret', 0),
-(3, 2, 1,'Debit', 1.00, 'EUR', '19/05/23 13:20:12', 'Transfer to my Bank', 0),
-(4, 2, 3,'Debit', 10.00, 'EUR', '19/05/23 14:20:12', 'Don', 0);
+(1, 1, 3,'Credit', 100.00, 'EUR', '19/05/23 11:20:12', 'Get from my Bank', 0.5),
+(2, 3, 2,'Debit', 15.00, 'EUR', '19/05/23 12:20:12', 'Pret', 0.75),
+(3, 2, 1,'Debit', 1.00, 'EUR', '19/05/23 13:20:12', 'Transfer to my Bank', 0.005),
+(4, 2, 3,'Debit', 10.00, 'EUR', '19/05/23 14:20:12', 'Don', 0.05);
 
 INSERT INTO assoc_user_user VALUES
 (3 ,2),(2 ,3);

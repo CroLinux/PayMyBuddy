@@ -25,6 +25,8 @@ public class TransferController {
 
 	@Autowired
 	private TransactionService transactionService;
+	
+	private static double FEE = 0.5 / 100;
 
 	/**
 	 * Method to display the page and the different informations
@@ -41,9 +43,9 @@ public class TransferController {
 			List<User> connections = currentUser.getContacts();
 			List<Transaction> transactionsDone = currentUser.getTransactionsDone();
 			List<Transaction> transactionsReceived = currentUser.getTransactionsReceived();
-			Iterable<TransactionDto> allTrxDone = transactionService.findTransactionsDoneByUSer(currentUser.getId());
+			Iterable<TransactionDto> allTrxDone = transactionService.findTransactionsDoneByUser(currentUser.getId());
 			Iterable<TransactionDto> allTrxReceived = transactionService
-					.findTransactionsReceivedByUSer(currentUser.getId());
+					.findTransactionsReceivedByUser(currentUser.getId());
 			model.addAttribute("user", currentUser);
 			model.addAttribute("connections", connections);
 			model.addAttribute("transactionsDone", transactionsDone);
@@ -85,18 +87,18 @@ public class TransferController {
 			LocalDateTime now = LocalDateTime.now();
 			newTransaction.setDate(now);
 			newTransaction.setDescription(transaction.getDescription());
-			newTransaction.setFee(0);
+			newTransaction.setFee(transaction.getAmount()*FEE);
 			transactionService.saveTransaction(newTransaction);
 
 			// We need to update the balance of the sender_id
-			float newBalance = currentUser.getBalance() - transaction.getAmount();
+			double newBalance = currentUser.getBalance() - transaction.getAmount() - newTransaction.getFee();
 			currentUser.setBalance(newBalance);
 			userService.updateUser(currentUser);
 
 			// We need to update the balance of the received_id
 			String receiverEmail = userService.findEmailUserById(transaction.getReceiver_id());
 			User receiverUser = userService.getUserByEmail(receiverEmail);
-			float newReceiverBalance = receiverUser.getBalance() + transaction.getAmount();
+			double newReceiverBalance = receiverUser.getBalance() + transaction.getAmount();
 			receiverUser.setBalance(newReceiverBalance);
 			userService.updateUser(receiverUser);
 
@@ -140,11 +142,11 @@ public class TransferController {
 			LocalDateTime now = LocalDateTime.now();
 			newTransaction.setDate(now);
 			newTransaction.setDescription("Transfer to my Bank");
-			newTransaction.setFee(0);
+			newTransaction.setFee(transaction.getAmount()*FEE);
 			transactionService.saveTransaction(newTransaction);
 
 			// We need to update the balance of the sender_id/user
-			float newBalance = currentUser.getBalance() - transaction.getAmount();
+			double newBalance = currentUser.getBalance() - transaction.getAmount() - newTransaction.getFee();
 			currentUser.setBalance(newBalance);
 			userService.updateUser(currentUser);
 
@@ -180,11 +182,11 @@ public class TransferController {
 		LocalDateTime now = LocalDateTime.now();
 		newTransaction.setDate(now);
 		newTransaction.setDescription("Get from my Bank");
-		newTransaction.setFee(0);
+		newTransaction.setFee(transaction.getAmount()*FEE);
 		transactionService.saveTransaction(newTransaction);
 
 		// We need to update the balance of the receiver_id
-		float newBalance = currentUser.getBalance() + transaction.getAmount();
+		double newBalance = currentUser.getBalance() + transaction.getAmount() - newTransaction.getFee();
 		currentUser.setBalance(newBalance);
 		userService.updateUser(currentUser);
 

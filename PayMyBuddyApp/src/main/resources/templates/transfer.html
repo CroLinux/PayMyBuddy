@@ -164,6 +164,7 @@
 							<th style="background-color: #63CF63 !important; color: white;">Firstname</th>
 							<th style="background-color: #63CF63 !important; color: white;">Lastname</th>
 							<th style="background-color: #63CF63 !important; color: white;">Amount</th>
+							<th style="background-color: #63CF63 !important; color: white;">Fee</th>
 							<th style="background-color: #63CF63 !important; color: white;">Date</th>
 						</tr>
 					</thead>
@@ -173,6 +174,7 @@
 							<td th:text="${trxDone.firstname_receiver}" />
 							<td th:text="${trxDone.lastname_receiver}" />
 							<td th:text="${trxDone.amount}" />
+							<td th:text="${trxDone.fee}" />
 							<td th:text="${trxDone.date}" />
 						</tr>
 					</tbody>
@@ -196,6 +198,7 @@
 							<th style="background-color: #63CF63 !important; color: white;">Firstname</th>
 							<th style="background-color: #63CF63 !important; color: white;">Lastname</th>
 							<th style="background-color: #63CF63 !important; color: white;">Amount</th>
+							<th style="background-color: #63CF63 !important; color: white;">Fee</th>
 							<th style="background-color: #63CF63 !important; color: white;">Date</th>
 						</tr>
 					</thead>
@@ -205,6 +208,7 @@
 							<td th:text="${trxReceived.firstname_sender}" />
 							<td th:text="${trxReceived.lastname_sender}" />
 							<td th:text="${trxReceived.amount}" />
+							<td th:text="${trxReceived.fee}" />
 							<td th:text="${trxReceived.date}" />
 						</tr>
 					</tbody>
