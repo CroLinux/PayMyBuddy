@@ -3,9 +3,11 @@ package com.paymybuddy.dto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
+@SpringBootTest
 public class TransactionDtoTest {
 
     private TransactionDto transactionDto1;

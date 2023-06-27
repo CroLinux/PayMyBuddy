@@ -49,19 +49,6 @@ CREATE TABLE transaction
    FOREIGN KEY (sender_id) REFERENCES user_account (id),
    FOREIGN KEY (receiver_id) REFERENCES user_account (id)
 );
--- Table structure for association table 'assoc_user_trx' --
-CREATE TABLE assoc_user_trx
-(
-   user_id INTEGER NOT NULL,
-   trx_id INTEGER NOT NULL,
-   PRIMARY KEY
-   (
-      user_id,
-      trx_id
-   ),
-   FOREIGN KEY (user_id) REFERENCES user_account (id),
-   FOREIGN KEY (trx_id) REFERENCES transaction (id)
-);
 
 
 -- Insert fake users and number 1 for the Bank simulation --
